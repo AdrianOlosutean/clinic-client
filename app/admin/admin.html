@@ -1,0 +1,26 @@
+<md-content ng-controller="adminController" class="md-padding">
+
+    <md-button class="md-fab md-primary md-fab-top-left" ng-click="insertUserDialog($event)">
+        <md-icon>add</md-icon>
+    </md-button>
+
+    <div layout-margin>
+
+        <mdt-table
+                table-card="{actionIcons: true}"
+                selectable-rows="true"
+                alternate-headers="'contextual'"
+                delete-row-callback="deleteRowCallback(rows)"
+                save-row-callback="saveRowCallback(row)">
+            <mdt-header-row>
+                <mdt-column align-rule="right">Username</mdt-column>
+                <mdt-column align-rule="right">Type</mdt-column>
+            </mdt-header-row>
+            <mdt-row ng-repeat="user in users" table-row-id="user.id">
+                <mdt-cell editable-field-title="Username" editable-field="largeEditDialog">{{user.username}}</mdt-cell>
+                <mdt-cell editable-field-title="Type" editable-field="largeEditDialog">{{user.type}}</mdt-cell>
+            </mdt-row>
+        </mdt-table>
+    </div>
+
+</md-content>

@@ -1,0 +1,44 @@
+<md-dialog flex="90">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Consultations</h2>
+                <span flex></span>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div align="row">
+                <md-input-container>
+                    <label>Description</label>
+                    <input ng-model="newconsultation.description">
+                </md-input-container>
+                <md-input-container>
+                    <label>Doctor</label>
+                    <md-select ng-model="newconsultation.doctor">
+                        <md-option ng-value="doctor._links.self.href" ng-repeat="doctor in availableDoctors">
+                            {{doctor.firstname}} {{doctor.lastname}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
+                    <label>Date</label>
+                    <md-datepicker ng-model="newconsultation.date"></md-datepicker>
+                </md-input-container>
+                <md-button ng-click="insert(newconsultation)">Insert</md-button>
+                <md-divider></md-divider>
+            </div>
+
+            <md-list>
+                <md-list-item class="md-2-line" ng-repeat="consultation in consultations">
+                    <p>Doctor: {{consultation.doctor.firstname}} {{consultation.doctor.lastname}}</p>
+                    <p>Date: {{consultation.date}}</p>
+                    <p>Description: {{consultation.description}}</p>
+
+                    <md-button ng-click="delete(consultation)">Delete</md-button>
+                </md-list-item>
+            </md-list>
+        </md-dialog-content>
+
+    </form>
+</md-dialog>
